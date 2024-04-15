@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zagruzka_ekrana/presentation/pages/components/user_details_page_tab.dart';
-import 'package:zagruzka_ekrana/presentation/user_details_page_bloc/costants/page_tab_enum.dart';
-import 'package:zagruzka_ekrana/presentation/user_details_page_bloc/user_details_page_bloc.dart';
 import 'package:zagruzka_ekrana/presentation/view_models/user_entity_view_model.dart';
 
 class UserDetailsPage extends StatelessWidget {
@@ -82,23 +78,11 @@ class UserDetailsPage extends StatelessWidget {
               ),
             ],
           ),
-          BlocBuilder<UserDetailsPageBloc, UserDetailsPageState>(
-            builder: (context, state) {
-              return UserDetailsPageTab(tabEnum: state.tab);
-            }
-          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        onTap: (index) {
-          final tabEnum = PageTabEnum.fromInt(index);
-          final bloc = context.read<UserDetailsPageBloc>();
-          // bloc.add(event);///event s enumom send v bloc
-          bloc.add(ChangePageTabEvent(tabEnum: tabEnum),
-          );
-        },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.web_stories),

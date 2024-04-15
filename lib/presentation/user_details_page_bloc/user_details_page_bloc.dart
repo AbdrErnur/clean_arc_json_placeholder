@@ -27,7 +27,6 @@ class UserDetailsPageBloc extends Bloc<UserDetailsPageEvent, UserDetailsPageStat
     this.getAlbumUsecase,required this.getPhotoUsecase, required this.getTodoUsecase})
       : super(const UserDetailsPageState( posts: [], comment: [], album: [], photo: [], todo: [])) {
     on<InitializeUserDetailsEvent>(_onInitialized);
-    on<ChangePageTabEvent>(_changeTab);
   }
 
   final GetPostUsecase getPostsUsecase;
@@ -70,7 +69,4 @@ class UserDetailsPageBloc extends Bloc<UserDetailsPageEvent, UserDetailsPageStat
     ));
   }
 
-  Future<void> _changeTab(ChangePageTabEvent event, Emitter<UserDetailsPageState> emit)async{
-    emit(state.copyWith(tab: event.tabEnum));
-  }
 }

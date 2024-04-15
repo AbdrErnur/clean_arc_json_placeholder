@@ -3,8 +3,3 @@ abstract class UserDetailsPageEvent{}
 
 class InitializeUserDetailsEvent extends UserDetailsPageEvent{}
 
-class ChangePageTabEvent extends UserDetailsPageEvent{
-  final PageTabEnum tabEnum;
-
-  ChangePageTabEvent({required this.tabEnum});
-}
