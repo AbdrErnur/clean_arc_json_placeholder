@@ -19,6 +19,7 @@ mixin _$AlbumViewModel {
   int get userId => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  List<PhotoViewModel> get photoList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AlbumViewModelCopyWith<AlbumViewModel> get copyWith =>
@@ -31,7 +32,7 @@ abstract class $AlbumViewModelCopyWith<$Res> {
           AlbumViewModel value, $Res Function(AlbumViewModel) then) =
       _$AlbumViewModelCopyWithImpl<$Res, AlbumViewModel>;
   @useResult
-  $Res call({int userId, int id, String title});
+  $Res call({int userId, int id, String title, List<PhotoViewModel> photoList});
 }
 
 /// @nodoc
@@ -50,6 +51,7 @@ class _$AlbumViewModelCopyWithImpl<$Res, $Val extends AlbumViewModel>
     Object? userId = null,
     Object? id = null,
     Object? title = null,
+    Object? photoList = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -64,6 +66,10 @@ class _$AlbumViewModelCopyWithImpl<$Res, $Val extends AlbumViewModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      photoList: null == photoList
+          ? _value.photoList
+          : photoList // ignore: cast_nullable_to_non_nullable
+              as List<PhotoViewModel>,
     ) as $Val);
   }
 }
@@ -76,7 +82,7 @@ abstract class _$$AlbumViewModelImplCopyWith<$Res>
       __$$AlbumViewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, int id, String title});
+  $Res call({int userId, int id, String title, List<PhotoViewModel> photoList});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class __$$AlbumViewModelImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? id = null,
     Object? title = null,
+    Object? photoList = null,
   }) {
     return _then(_$AlbumViewModelImpl(
       userId: null == userId
@@ -107,6 +114,10 @@ class __$$AlbumViewModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      photoList: null == photoList
+          ? _value._photoList
+          : photoList // ignore: cast_nullable_to_non_nullable
+              as List<PhotoViewModel>,
     ));
   }
 }
@@ -115,7 +126,11 @@ class __$$AlbumViewModelImplCopyWithImpl<$Res>
 
 class _$AlbumViewModelImpl implements _AlbumViewModel {
   const _$AlbumViewModelImpl(
-      {required this.userId, required this.id, required this.title});
+      {required this.userId,
+      required this.id,
+      required this.title,
+      final List<PhotoViewModel> photoList = const []})
+      : _photoList = photoList;
 
   @override
   final int userId;
@@ -123,10 +138,18 @@ class _$AlbumViewModelImpl implements _AlbumViewModel {
   final int id;
   @override
   final String title;
+  final List<PhotoViewModel> _photoList;
+  @override
+  @JsonKey()
+  List<PhotoViewModel> get photoList {
+    if (_photoList is EqualUnmodifiableListView) return _photoList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_photoList);
+  }
 
   @override
   String toString() {
-    return 'AlbumViewModel(userId: $userId, id: $id, title: $title)';
+    return 'AlbumViewModel(userId: $userId, id: $id, title: $title, photoList: $photoList)';
   }
 
   @override
@@ -136,11 +159,14 @@ class _$AlbumViewModelImpl implements _AlbumViewModel {
             other is _$AlbumViewModelImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality()
+                .equals(other._photoList, _photoList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, id, title);
+  int get hashCode => Object.hash(runtimeType, userId, id, title,
+      const DeepCollectionEquality().hash(_photoList));
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +180,8 @@ abstract class _AlbumViewModel implements AlbumViewModel {
   const factory _AlbumViewModel(
       {required final int userId,
       required final int id,
-      required final String title}) = _$AlbumViewModelImpl;
+      required final String title,
+      final List<PhotoViewModel> photoList}) = _$AlbumViewModelImpl;
 
   @override
   int get userId;
@@ -162,6 +189,8 @@ abstract class _AlbumViewModel implements AlbumViewModel {
   int get id;
   @override
   String get title;
+  @override
+  List<PhotoViewModel> get photoList;
   @override
   @JsonKey(ignore: true)
   _$$AlbumViewModelImplCopyWith<_$AlbumViewModelImpl> get copyWith =>

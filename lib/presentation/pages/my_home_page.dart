@@ -43,7 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: GestureDetector(
                         child: Row(
                           children: [
-                            Image.network('https://img.freepik.com/premium-vector/user-profile-icon-in-flat-style-member-avatar-vector-illustration-on-isolated-background-human-permission-sign-business-concept_157943-15752.jpg?w=740',width: 50,height: 50,),
+                            Image.network(
+                              'https://img.freepik.com/premium-vector/user-profile-icon-in-flat-style-member-avatar-vector-illustration-on-isolated-background-human-permission-sign-business-concept_157943-15752.jpg?w=740',
+                              width: 50,
+                              height: 50,
+                            ),
                             Text(user.name),
                           ],
                         ),
@@ -59,8 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   getAlbumUsecase: getIt.get<GetAlbumUsecase>(),
                                   getPhotoUsecase: getIt.get<GetPhotoUsecase>(),
                                   getTodoUsecase: getIt.get<GetTodoUsecase>(),
+                                  user: user,
                                 ),
-                                child: UserDetailsPage(user: user),
+                                child: const UserDetailsPage(),
                               ),
                             ),
                           );

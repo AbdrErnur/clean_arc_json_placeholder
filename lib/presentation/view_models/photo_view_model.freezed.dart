@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PhotoViewModel {
-  int get albomId => throw _privateConstructorUsedError;
+  int get albumId => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $PhotoViewModelCopyWith<$Res> {
       _$PhotoViewModelCopyWithImpl<$Res, PhotoViewModel>;
   @useResult
   $Res call(
-      {int albomId, int id, String title, String url, String thumbnailUrl});
+      {int albumId, int id, String title, String url, String thumbnailUrl});
 }
 
 /// @nodoc
@@ -50,16 +50,16 @@ class _$PhotoViewModelCopyWithImpl<$Res, $Val extends PhotoViewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? albomId = null,
+    Object? albumId = null,
     Object? id = null,
     Object? title = null,
     Object? url = null,
     Object? thumbnailUrl = null,
   }) {
     return _then(_value.copyWith(
-      albomId: null == albomId
-          ? _value.albomId
-          : albomId // ignore: cast_nullable_to_non_nullable
+      albumId: null == albumId
+          ? _value.albumId
+          : albumId // ignore: cast_nullable_to_non_nullable
               as int,
       id: null == id
           ? _value.id
@@ -90,7 +90,7 @@ abstract class _$$PhotoViewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int albomId, int id, String title, String url, String thumbnailUrl});
+      {int albumId, int id, String title, String url, String thumbnailUrl});
 }
 
 /// @nodoc
@@ -104,16 +104,16 @@ class __$$PhotoViewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? albomId = null,
+    Object? albumId = null,
     Object? id = null,
     Object? title = null,
     Object? url = null,
     Object? thumbnailUrl = null,
   }) {
     return _then(_$PhotoViewModelImpl(
-      albomId: null == albomId
-          ? _value.albomId
-          : albomId // ignore: cast_nullable_to_non_nullable
+      albumId: null == albumId
+          ? _value.albumId
+          : albumId // ignore: cast_nullable_to_non_nullable
               as int,
       id: null == id
           ? _value.id
@@ -139,14 +139,14 @@ class __$$PhotoViewModelImplCopyWithImpl<$Res>
 
 class _$PhotoViewModelImpl implements _PhotoViewModel {
   _$PhotoViewModelImpl(
-      {required this.albomId,
+      {required this.albumId,
       required this.id,
       required this.title,
       required this.url,
       required this.thumbnailUrl});
 
   @override
-  final int albomId;
+  final int albumId;
   @override
   final int id;
   @override
@@ -158,7 +158,7 @@ class _$PhotoViewModelImpl implements _PhotoViewModel {
 
   @override
   String toString() {
-    return 'PhotoViewModel(albomId: $albomId, id: $id, title: $title, url: $url, thumbnailUrl: $thumbnailUrl)';
+    return 'PhotoViewModel(albumId: $albumId, id: $id, title: $title, url: $url, thumbnailUrl: $thumbnailUrl)';
   }
 
   @override
@@ -166,7 +166,7 @@ class _$PhotoViewModelImpl implements _PhotoViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PhotoViewModelImpl &&
-            (identical(other.albomId, albomId) || other.albomId == albomId) &&
+            (identical(other.albumId, albumId) || other.albumId == albumId) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.url, url) || other.url == url) &&
@@ -176,7 +176,7 @@ class _$PhotoViewModelImpl implements _PhotoViewModel {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, albomId, id, title, url, thumbnailUrl);
+      Object.hash(runtimeType, albumId, id, title, url, thumbnailUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -188,14 +188,14 @@ class _$PhotoViewModelImpl implements _PhotoViewModel {
 
 abstract class _PhotoViewModel implements PhotoViewModel {
   factory _PhotoViewModel(
-      {required final int albomId,
+      {required final int albumId,
       required final int id,
       required final String title,
       required final String url,
       required final String thumbnailUrl}) = _$PhotoViewModelImpl;
 
   @override
-  int get albomId;
+  int get albumId;
   @override
   int get id;
   @override

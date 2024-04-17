@@ -4,7 +4,7 @@ import 'package:zagruzka_ekrana/presentation/view_models/photo_view_model.dart';
 class PhotoViewModelMapper {
   static PhotoViewModel toViewModel(PhotoEntity photo) {
     return PhotoViewModel(
-      albomId: photo.albumId,
+      albumId: photo.albumId,
       id: photo.id,
       title: photo.title,
       url: photo.url,

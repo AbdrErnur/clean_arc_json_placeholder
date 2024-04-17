@@ -20,6 +20,8 @@ mixin _$PostEntityViewModel {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
+  List<CommentEntityViewModel> get commentList =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostEntityViewModelCopyWith<PostEntityViewModel> get copyWith =>
@@ -32,7 +34,12 @@ abstract class $PostEntityViewModelCopyWith<$Res> {
           PostEntityViewModel value, $Res Function(PostEntityViewModel) then) =
       _$PostEntityViewModelCopyWithImpl<$Res, PostEntityViewModel>;
   @useResult
-  $Res call({int userId, int id, String title, String body});
+  $Res call(
+      {int userId,
+      int id,
+      String title,
+      String body,
+      List<CommentEntityViewModel> commentList});
 }
 
 /// @nodoc
@@ -52,6 +59,7 @@ class _$PostEntityViewModelCopyWithImpl<$Res, $Val extends PostEntityViewModel>
     Object? id = null,
     Object? title = null,
     Object? body = null,
+    Object? commentList = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -70,6 +78,10 @@ class _$PostEntityViewModelCopyWithImpl<$Res, $Val extends PostEntityViewModel>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
+      commentList: null == commentList
+          ? _value.commentList
+          : commentList // ignore: cast_nullable_to_non_nullable
+              as List<CommentEntityViewModel>,
     ) as $Val);
   }
 }
@@ -82,7 +94,12 @@ abstract class _$$PostEntityViewModelImplCopyWith<$Res>
       __$$PostEntityViewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, int id, String title, String body});
+  $Res call(
+      {int userId,
+      int id,
+      String title,
+      String body,
+      List<CommentEntityViewModel> commentList});
 }
 
 /// @nodoc
@@ -100,6 +117,7 @@ class __$$PostEntityViewModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? body = null,
+    Object? commentList = null,
   }) {
     return _then(_$PostEntityViewModelImpl(
       userId: null == userId
@@ -118,6 +136,10 @@ class __$$PostEntityViewModelImplCopyWithImpl<$Res>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
+      commentList: null == commentList
+          ? _value._commentList
+          : commentList // ignore: cast_nullable_to_non_nullable
+              as List<CommentEntityViewModel>,
     ));
   }
 }
@@ -129,7 +151,9 @@ class _$PostEntityViewModelImpl implements _PostEntityViewModel {
       {required this.userId,
       required this.id,
       required this.title,
-      required this.body});
+      required this.body,
+      final List<CommentEntityViewModel> commentList = const []})
+      : _commentList = commentList;
 
   @override
   final int userId;
@@ -139,10 +163,18 @@ class _$PostEntityViewModelImpl implements _PostEntityViewModel {
   final String title;
   @override
   final String body;
+  final List<CommentEntityViewModel> _commentList;
+  @override
+  @JsonKey()
+  List<CommentEntityViewModel> get commentList {
+    if (_commentList is EqualUnmodifiableListView) return _commentList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_commentList);
+  }
 
   @override
   String toString() {
-    return 'PostEntityViewModel(userId: $userId, id: $id, title: $title, body: $body)';
+    return 'PostEntityViewModel(userId: $userId, id: $id, title: $title, body: $body, commentList: $commentList)';
   }
 
   @override
@@ -153,11 +185,14 @@ class _$PostEntityViewModelImpl implements _PostEntityViewModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body));
+            (identical(other.body, body) || other.body == body) &&
+            const DeepCollectionEquality()
+                .equals(other._commentList, _commentList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, id, title, body);
+  int get hashCode => Object.hash(runtimeType, userId, id, title, body,
+      const DeepCollectionEquality().hash(_commentList));
 
   @JsonKey(ignore: true)
   @override
@@ -169,10 +204,12 @@ class _$PostEntityViewModelImpl implements _PostEntityViewModel {
 
 abstract class _PostEntityViewModel implements PostEntityViewModel {
   const factory _PostEntityViewModel(
-      {required final int userId,
-      required final int id,
-      required final String title,
-      required final String body}) = _$PostEntityViewModelImpl;
+          {required final int userId,
+          required final int id,
+          required final String title,
+          required final String body,
+          final List<CommentEntityViewModel> commentList}) =
+      _$PostEntityViewModelImpl;
 
   @override
   int get userId;
@@ -182,6 +219,8 @@ abstract class _PostEntityViewModel implements PostEntityViewModel {
   String get title;
   @override
   String get body;
+  @override
+  List<CommentEntityViewModel> get commentList;
   @override
   @JsonKey(ignore: true)
   _$$PostEntityViewModelImplCopyWith<_$PostEntityViewModelImpl> get copyWith =>

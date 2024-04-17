@@ -4,7 +4,7 @@ part 'photo_view_model.freezed.dart';
 @freezed
 class PhotoViewModel with _$PhotoViewModel {
   factory PhotoViewModel({
-    required int albomId,
+    required int albumId,
     required int id,
     required String title,
     required String url,
