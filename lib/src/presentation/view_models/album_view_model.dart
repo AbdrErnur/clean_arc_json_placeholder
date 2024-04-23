@@ -1,0 +1,14 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:zagruzka_ekrana/src/presentation/view_models/photo_view_model.dart';
+part 'album_view_model.freezed.dart';
+
+@freezed
+class AlbumViewModel with _$AlbumViewModel{
+  const factory AlbumViewModel({
+    required int userId,
+    required int id,
+    required String title,
+    @Default([]) List<PhotoViewModel> photoList,
+})=_AlbumViewModel;
+
+}

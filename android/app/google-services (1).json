@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "79691630924",
+    "project_id": "cleanarch-935ac",
+    "storage_bucket": "cleanarch-935ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79691630924:android:04d6bb7cdf2e642c8827e9",
+        "android_client_info": {
+          "package_name": "com.example.zagruzka_ekrana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyZ2_1FdWNJQQXWlkmSV_4OVzUaliUPJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'cleanarch-935ac.appspot.com',
     measurementId: 'G-JP9FT7YQ74',
   );
+
 }
