@@ -4,10 +4,10 @@ import 'package:zagruzka_ekrana/features/auth/data/mappers/account_mapper.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/entities/account_entity.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/repositories/account_repository.dart';
 
-class AuthRepositoryImpl implements AccountRepository {
-  final DataSource _dataSource;
+class AccountRepositoryImpl implements AccountRepository {
+  final AccountDataSource _dataSource;
 
-  AuthRepositoryImpl(this._dataSource);
+  AccountRepositoryImpl(this._dataSource);
 
   @override
   Future<AccountEntity?> signUp(String email, String password) async {
@@ -46,4 +46,11 @@ class AuthRepositoryImpl implements AccountRepository {
   User? getCurrentUser() {
     return _dataSource.getCurrentUser();
   }
+
+  @override
+  Future<String?> getToken() async{
+    String? token = await _dataSource.getToken();
+    return token;
+  }
+
 }

@@ -12,12 +12,12 @@ part 'home_page_event.dart';
 part 'home_page_state.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
-  HomePageBloc(this.getUsersUsecase)
-      : super(const HomePageState( percent: 0, users: [])) {
+  HomePageBloc({required GetUsersUsecase getUsersUsecase}) : _getUsersUsecase = getUsersUsecase,
+        super(const HomePageState( percent: 0, users: [])) {
     on<InitializeHomePageEvent>(_onLoadingSlider);
   }
 
-  final GetUsersUsecase getUsersUsecase;
+  final GetUsersUsecase _getUsersUsecase;
 
   _onLoadingSlider(InitializeHomePageEvent event, Emitter<HomePageState> emit) async {
     double percent = 0;
@@ -27,7 +27,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       emit( state.copyWith(percent: percent));
     });
 
-      final userList = await getUsersUsecase.call();
+      final userList = await _getUsersUsecase.call();
 
 
       final userViewModelList = userList.map((e) => UserEntityViewModelMapper.toViewModel(e))

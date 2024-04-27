@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zagruzka_ekrana/di.dart';
+import 'package:zagruzka_ekrana/service/routing/route_constants.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_album_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_comment_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_photo_usecase.dart';
@@ -12,7 +14,10 @@ import 'package:zagruzka_ekrana/src/presentation/pages/user_details_page.dart';
 import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/user_details_page_bloc.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage(
+    this.title, {
+    super.key,
+  });
 
   final String title;
 
@@ -52,22 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (context) => UserDetailsPageBloc(
-                                  getPostsUsecase: getIt.get<GetPostUsecase>(),
-                                  getCommentUsecase:
-                                      getIt.get<GetCommentUsecase>(),
-                                  getAlbumUsecase: getIt.get<GetAlbumUsecase>(),
-                                  getPhotoUsecase: getIt.get<GetPhotoUsecase>(),
-                                  getTodoUsecase: getIt.get<GetTodoUsecase>(),
-                                  user: user,
-                                ),
-                                child: const UserDetailsPage(),
-                              ),
-                            ),
+                          context.go(
+                            '${AppRoutePaths.homePage.path}/${AppRoutePaths.userDetails.path}', extra: user,
+                            // queryParameters: {"index": index}, //TODO: add to json to UserViewModel
                           );
                         },
                       ),

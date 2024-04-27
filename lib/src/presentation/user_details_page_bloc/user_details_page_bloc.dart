@@ -35,11 +35,7 @@ class UserDetailsPageBloc
     required this.getTodoUsecase,
     required UserEntityViewModel user,
   })  : _user = user,
-        super(const UserDetailsPageState(
-          posts: [],
-          album: [],
-          todo: [],
-        )) {
+        super(const UserDetailsPageState()) {
     on<LoadTodoListDataEvent>(_onInitialized);
     on<ChangePageTabEvent>(_onChangePageTab);
     on<LoadAlbumDataEvent>(_onLoadAlbumEvent);

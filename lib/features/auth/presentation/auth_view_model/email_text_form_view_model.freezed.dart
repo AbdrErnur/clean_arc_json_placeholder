@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EmailTextFormViewModel {
   String get value => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  bool get isValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EmailTextFormViewModelCopyWith<EmailTextFormViewModel> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $EmailTextFormViewModelCopyWith<$Res> {
           $Res Function(EmailTextFormViewModel) then) =
       _$EmailTextFormViewModelCopyWithImpl<$Res, EmailTextFormViewModel>;
   @useResult
-  $Res call({String value, String errorMessage});
+  $Res call({String value, String errorMessage, bool isValid});
 }
 
 /// @nodoc
@@ -49,6 +50,7 @@ class _$EmailTextFormViewModelCopyWithImpl<$Res,
   $Res call({
     Object? value = null,
     Object? errorMessage = null,
+    Object? isValid = null,
   }) {
     return _then(_value.copyWith(
       value: null == value
@@ -59,6 +61,10 @@ class _$EmailTextFormViewModelCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -72,7 +78,7 @@ abstract class _$$EmailTextFormViewModelImplCopyWith<$Res>
       __$$EmailTextFormViewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String errorMessage});
+  $Res call({String value, String errorMessage, bool isValid});
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class __$$EmailTextFormViewModelImplCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
     Object? errorMessage = null,
+    Object? isValid = null,
   }) {
     return _then(_$EmailTextFormViewModelImpl(
       value: null == value
@@ -100,6 +107,10 @@ class __$$EmailTextFormViewModelImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -108,16 +119,21 @@ class __$$EmailTextFormViewModelImplCopyWithImpl<$Res>
 
 class _$EmailTextFormViewModelImpl implements _EmailTextFormViewModel {
   const _$EmailTextFormViewModelImpl(
-      {required this.value, required this.errorMessage});
+      {this.value = '', this.errorMessage = '', this.isValid = true});
 
   @override
+  @JsonKey()
   final String value;
   @override
+  @JsonKey()
   final String errorMessage;
+  @override
+  @JsonKey()
+  final bool isValid;
 
   @override
   String toString() {
-    return 'EmailTextFormViewModel(value: $value, errorMessage: $errorMessage)';
+    return 'EmailTextFormViewModel(value: $value, errorMessage: $errorMessage, isValid: $isValid)';
   }
 
   @override
@@ -127,11 +143,12 @@ class _$EmailTextFormViewModelImpl implements _EmailTextFormViewModel {
             other is _$EmailTextFormViewModelImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.isValid, isValid) || other.isValid == isValid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, errorMessage);
+  int get hashCode => Object.hash(runtimeType, value, errorMessage, isValid);
 
   @JsonKey(ignore: true)
   @override
@@ -143,13 +160,16 @@ class _$EmailTextFormViewModelImpl implements _EmailTextFormViewModel {
 
 abstract class _EmailTextFormViewModel implements EmailTextFormViewModel {
   const factory _EmailTextFormViewModel(
-      {required final String value,
-      required final String errorMessage}) = _$EmailTextFormViewModelImpl;
+      {final String value,
+      final String errorMessage,
+      final bool isValid}) = _$EmailTextFormViewModelImpl;
 
   @override
   String get value;
   @override
   String get errorMessage;
+  @override
+  bool get isValid;
   @override
   @JsonKey(ignore: true)
   _$$EmailTextFormViewModelImplCopyWith<_$EmailTextFormViewModelImpl>

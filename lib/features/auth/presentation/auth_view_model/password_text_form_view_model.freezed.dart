@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PasswordTextFormViewModel {
   String get value => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  bool get isValid => throw _privateConstructorUsedError;
+  bool get isObscured => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PasswordTextFormViewModelCopyWith<PasswordTextFormViewModel> get copyWith =>
@@ -30,7 +32,7 @@ abstract class $PasswordTextFormViewModelCopyWith<$Res> {
           $Res Function(PasswordTextFormViewModel) then) =
       _$PasswordTextFormViewModelCopyWithImpl<$Res, PasswordTextFormViewModel>;
   @useResult
-  $Res call({String value, String errorMessage});
+  $Res call({String value, String errorMessage, bool isValid, bool isObscured});
 }
 
 /// @nodoc
@@ -49,6 +51,8 @@ class _$PasswordTextFormViewModelCopyWithImpl<$Res,
   $Res call({
     Object? value = null,
     Object? errorMessage = null,
+    Object? isValid = null,
+    Object? isObscured = null,
   }) {
     return _then(_value.copyWith(
       value: null == value
@@ -59,6 +63,14 @@ class _$PasswordTextFormViewModelCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isObscured: null == isObscured
+          ? _value.isObscured
+          : isObscured // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -72,7 +84,7 @@ abstract class _$$PasswordTextFormViewModelImplCopyWith<$Res>
       __$$PasswordTextFormViewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String errorMessage});
+  $Res call({String value, String errorMessage, bool isValid, bool isObscured});
 }
 
 /// @nodoc
@@ -90,6 +102,8 @@ class __$$PasswordTextFormViewModelImplCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
     Object? errorMessage = null,
+    Object? isValid = null,
+    Object? isObscured = null,
   }) {
     return _then(_$PasswordTextFormViewModelImpl(
       value: null == value
@@ -100,6 +114,14 @@ class __$$PasswordTextFormViewModelImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isObscured: null == isObscured
+          ? _value.isObscured
+          : isObscured // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -108,16 +130,27 @@ class __$$PasswordTextFormViewModelImplCopyWithImpl<$Res>
 
 class _$PasswordTextFormViewModelImpl implements _PasswordTextFormViewModel {
   const _$PasswordTextFormViewModelImpl(
-      {required this.value, required this.errorMessage});
+      {this.value = '',
+      this.errorMessage = '',
+      this.isValid = true,
+      this.isObscured = true});
 
   @override
+  @JsonKey()
   final String value;
   @override
+  @JsonKey()
   final String errorMessage;
+  @override
+  @JsonKey()
+  final bool isValid;
+  @override
+  @JsonKey()
+  final bool isObscured;
 
   @override
   String toString() {
-    return 'PasswordTextFormViewModel(value: $value, errorMessage: $errorMessage)';
+    return 'PasswordTextFormViewModel(value: $value, errorMessage: $errorMessage, isValid: $isValid, isObscured: $isObscured)';
   }
 
   @override
@@ -127,11 +160,15 @@ class _$PasswordTextFormViewModelImpl implements _PasswordTextFormViewModel {
             other is _$PasswordTextFormViewModelImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.isValid, isValid) || other.isValid == isValid) &&
+            (identical(other.isObscured, isObscured) ||
+                other.isObscured == isObscured));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, value, errorMessage, isValid, isObscured);
 
   @JsonKey(ignore: true)
   @override
@@ -143,13 +180,19 @@ class _$PasswordTextFormViewModelImpl implements _PasswordTextFormViewModel {
 
 abstract class _PasswordTextFormViewModel implements PasswordTextFormViewModel {
   const factory _PasswordTextFormViewModel(
-      {required final String value,
-      required final String errorMessage}) = _$PasswordTextFormViewModelImpl;
+      {final String value,
+      final String errorMessage,
+      final bool isValid,
+      final bool isObscured}) = _$PasswordTextFormViewModelImpl;
 
   @override
   String get value;
   @override
   String get errorMessage;
+  @override
+  bool get isValid;
+  @override
+  bool get isObscured;
   @override
   @JsonKey(ignore: true)
   _$$PasswordTextFormViewModelImplCopyWith<_$PasswordTextFormViewModelImpl>

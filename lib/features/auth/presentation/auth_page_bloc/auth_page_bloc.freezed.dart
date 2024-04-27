@@ -136,12 +136,14 @@ class __$$AuthPageStateImplCopyWithImpl<$Res>
 
 class _$AuthPageStateImpl implements _AuthPageState {
   const _$AuthPageStateImpl(
-      {required this.emailTextFormViewModel,
-      required this.passwordTextFormViewModel});
+      {this.emailTextFormViewModel = const EmailTextFormViewModel(),
+      this.passwordTextFormViewModel = const PasswordTextFormViewModel()});
 
   @override
+  @JsonKey()
   final EmailTextFormViewModel emailTextFormViewModel;
   @override
+  @JsonKey()
   final PasswordTextFormViewModel passwordTextFormViewModel;
 
   @override
@@ -174,8 +176,8 @@ class _$AuthPageStateImpl implements _AuthPageState {
 
 abstract class _AuthPageState implements AuthPageState {
   const factory _AuthPageState(
-          {required final EmailTextFormViewModel emailTextFormViewModel,
-          required final PasswordTextFormViewModel passwordTextFormViewModel}) =
+          {final EmailTextFormViewModel emailTextFormViewModel,
+          final PasswordTextFormViewModel passwordTextFormViewModel}) =
       _$AuthPageStateImpl;
 
   @override

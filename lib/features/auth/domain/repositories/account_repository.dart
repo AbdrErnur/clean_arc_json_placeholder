@@ -6,4 +6,5 @@ abstract class AccountRepository {
   Future<AccountEntity?> signIn(String email, String password);
   Future<void> signOut();
   User? getCurrentUser();
+  Future<String?> getToken();
 }

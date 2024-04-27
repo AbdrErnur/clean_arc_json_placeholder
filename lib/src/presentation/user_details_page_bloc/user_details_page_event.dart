@@ -12,5 +12,6 @@ class ChangePageTabEvent extends UserDetailsPageEvent{
 
 class LoadAlbumDataEvent extends UserDetailsPageEvent{
   LoadAlbumDataEvent();
+
 }
 

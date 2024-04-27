@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class DataSource {
+class AccountDataSource {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Регистрация пользователя

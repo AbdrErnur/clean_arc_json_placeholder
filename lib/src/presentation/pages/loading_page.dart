@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:zagruzka_ekrana/service/routing/route_constants.dart';
 import 'package:zagruzka_ekrana/src/presentation/home_page_bloc/home_page_bloc.dart';
-import 'package:zagruzka_ekrana/src/presentation/pages/my_home_page.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -20,12 +21,7 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   void _blocListener(BuildContext context, HomePageState state) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: 'Main page'),
-        ),
-      );
+    context.go(AppRoutePaths.homePage.path);
   }
 
   @override
@@ -41,8 +37,8 @@ class _LoadingPageState extends State<LoadingPage> {
           children: [
             //BlocBuilder + BlocListener(functional'no) = BlocConsumer
             BlocConsumer<HomePageBloc, HomePageState>(
-              listenWhen: (oldState, newState){
-                return newState.percent>=1;
+              listenWhen: (oldState, newState) {
+                return newState.percent >= 1;
               },
               listener: _blocListener,
               builder: (context, state) {

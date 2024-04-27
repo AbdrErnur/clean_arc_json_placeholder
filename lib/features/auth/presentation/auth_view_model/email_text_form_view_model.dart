@@ -5,14 +5,15 @@ part 'email_text_form_view_model.freezed.dart';
 @freezed
 class EmailTextFormViewModel with _$EmailTextFormViewModel{
   const factory EmailTextFormViewModel({
-    required String value,
-    required String errorMessage,
+    @Default('') String value,
+    @Default('') String errorMessage,
+    @Default(true) bool isValid,
 })=_EmailTextFormViewModel;
 }
 
 
-//
-//
+
+
 // class EmailTextFormViewModel{
 //   //string value
 //   //string errorMessage пример: неправильная почта

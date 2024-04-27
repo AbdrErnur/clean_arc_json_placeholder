@@ -6,7 +6,9 @@ part 'password_text_form_view_model.freezed.dart';
 @freezed
 class PasswordTextFormViewModel with _$PasswordTextFormViewModel{
   const factory PasswordTextFormViewModel({
-    required String value,
-    required String errorMessage,
+    @Default('') String value,
+    @Default('') String errorMessage,
+    @Default(true) bool isValid,
+    @Default(true) bool isObscured,
   })=_PasswordTextFormViewModel;
 }

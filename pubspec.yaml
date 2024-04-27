@@ -47,6 +47,10 @@ dependencies:
   firebase_messaging: ^14.8.2
   firebase_auth: ^4.19.2
   email_validator: ^2.1.17
+  go_router: ^13.2.5
+  loader_overlay: ^4.0.0
+  rxdart: ^0.27.7
+  bloc_concurrency: ^0.2.5
 
 
 dev_dependencies:
