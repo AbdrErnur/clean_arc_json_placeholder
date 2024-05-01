@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:zagruzka_ekrana/features/auth/presentation/register_page_bloc/register_page_bloc.dart';
+import 'package:zagruzka_ekrana/features/auth/presentation/auth_page_bloc/sign_in_page_bloc.dart';
 import 'package:zagruzka_ekrana/service/routing/route_constants.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailTextInputController = TextEditingController();
   TextEditingController passwordTextInputController = TextEditingController();
-  TextEditingController passwordTextRepeatInputController = TextEditingController();
 
   @override
   void dispose() {
     emailTextInputController.dispose();
     passwordTextInputController.dispose();
-    passwordTextRepeatInputController.dispose();
 
     super.dispose();
   }
@@ -31,31 +29,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       emailTextInputController.addListener(() {
-        context.read<RegisterPageBloc>().add(RegisterPageEvent.editEmail(emailTextInputController.text));
+        context
+            .read<SignInPageBloc>()
+            .add(SignInPageEvent.editEmail(emailTextInputController.text));
       });
     });
     passwordTextInputController.addListener(() {
-      context.read<RegisterPageBloc>().add(RegisterPageEvent.editPassword(passwordTextInputController.text));
+      context
+          .read<SignInPageBloc>()
+          .add(SignInPageEvent.editPassword(passwordTextInputController.text));
     });
-    passwordTextRepeatInputController.addListener(() {
-      context.read<RegisterPageBloc>().add(RegisterPageEvent.editConfirmationPassword(
-          passwordTextRepeatInputController.text));
-    });
-
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<RegisterPageBloc>();
-    return BlocListener<RegisterPageBloc, RegisterPageState>(
+    final bloc = context.read<SignInPageBloc>();
+    return BlocListener<SignInPageBloc, SignInPageState>(
       listenWhen: (context, oldState) {
-        return oldState.status != RegistrationStatus.none;
+        return oldState.status != SignInStatus.none;
       },
       listener: (BuildContext context, state) {
         switch (state.status) {
-          case RegistrationStatus.loading:
+          case SignInStatus.loading:
             context.loaderOverlay.show();
-          case RegistrationStatus.failure:
+          case SignInStatus.failure:
             context.loaderOverlay.hide();
             showDialog(
                 context: context,
@@ -65,29 +62,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     actions: [
                       TextButton(
                           onPressed: () {
-                            bloc.add(const RegisterPageEvent.clearErrors());
+                            bloc.add(const SignInPageEvent.clearErrors());
                             context.pop();
                           },
                           child: const Text('Ok'))
                     ],
                   );
                 });
-          case RegistrationStatus.succeed:
+          case SignInStatus.succeed:
             context.loaderOverlay.hide();
             context.go(AppRoutePaths.homePage.fullPath);
-          case RegistrationStatus.none:
+
+            // context.go(AppRoutePaths.homePage.fullPath);
+          case SignInStatus.none:
         }
       },
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(40.0),
-          child: BlocBuilder<RegisterPageBloc, RegisterPageState>(
-            builder: (context, state) {
+          child: BlocBuilder<SignInPageBloc, SignInPageState>(
+            builder: (context, state){
               final emailViewModel = state.emailTextFormViewModel;
               final passwordViewModel = state.passwordTextFormViewModel;
-              final confirmPasswordViewModel =
-                  state.passwordRepeatTextFormViewModel;
-              final bloc = context.read<RegisterPageBloc>();
+              final bloc = context.read<SignInPageBloc>();
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -95,6 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: emailTextInputController,
                     decoration: InputDecoration(
                       errorText: emailViewModel.errorMessage.isEmpty?null:emailViewModel.errorMessage,
+                      icon: const Icon(Icons.email),
                       labelText: 'Введите email',
                     ),
                   ),
@@ -105,21 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       labelText: 'Введите пароль',
                       suffixIcon: IconButton(
                         onPressed: () {
-                          bloc.add(const RegisterPageEvent.togglePasswordObscure());
-                        },
-                        icon: const Icon(Icons.remove_red_eye_outlined),
-                      ),
-                    ),
-                  ),
-                  TextFormField(
-                    controller: passwordTextRepeatInputController,
-                    obscureText: confirmPasswordViewModel.isObscured,
-                    decoration: InputDecoration(
-                      labelText: 'Подтвердите пороль',
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          bloc.add(const RegisterPageEvent
-                              .toggleConfirmationPasswordObscure());
+                          bloc.add(const SignInPageEvent.togglePasswordObscure());
                         },
                         icon: const Icon(Icons.remove_red_eye_outlined),
                       ),
@@ -127,9 +111,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                      onPressed: () =>
-                          bloc.add(const RegisterPageEvent.sendData()),
-                      child: const Text('Register'))
+                      onPressed: () {
+                        bloc.add( const SignInPageEvent.sendData());
+                      },
+                      child: const Text('Войти')),
+                  ElevatedButton(
+                    onPressed: () => context.go(
+                        AppRoutePaths.register.fullPath),
+                    child: const Text('Зарегестрироваться'),
+                  ),
                 ],
               );
             },

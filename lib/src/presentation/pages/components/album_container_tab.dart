@@ -15,7 +15,7 @@ class AlbumContentTab extends StatelessWidget {
       children : albumList.map((album) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: ConstrainedBox(
-          constraints:  BoxConstraints(maxHeight: MediaQuery.of(context).size.height/2,),
+          constraints:  BoxConstraints(maxHeight: MediaQuery.of(context).size.height*0.53,),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -48,11 +48,13 @@ class _PhotosContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Image.network(photo.url),
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Image.network(photo.url),
+                    ),
                   ),
                 ),
                 Padding(

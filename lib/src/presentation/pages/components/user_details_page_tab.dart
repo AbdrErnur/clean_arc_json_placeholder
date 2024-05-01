@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zagruzka_ekrana/src/presentation/pages/components/album_container_tab.dart';
+import 'package:zagruzka_ekrana/src/presentation/pages/components/post_conteiner_tab.dart';
 import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/costants/page_tab_enum.dart';
 import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/user_details_page_bloc.dart';
 
@@ -19,6 +20,7 @@ class _UserDetailsPageTabState extends State<UserDetailsPageTab> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final loadingPageBloc = BlocProvider.of<UserDetailsPageBloc>(context);
       loadingPageBloc.add(LoadAlbumDataEvent());
+      loadingPageBloc.add(LoadPostListDataEvent());
     });
   }
 
@@ -31,6 +33,7 @@ class _UserDetailsPageTabState extends State<UserDetailsPageTab> {
         case PageTabEnum.album:
           return AlbumContentTab(albumList: state.album);
         case PageTabEnum.posts:
+          return PostContainerTab(postViewModel: state.posts);
         case PageTabEnum.todo:
           return const Placeholder();
         // TODO: Handle this case.

@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Center(child: Text(widget.title)),
       ),
       body: Column(
@@ -39,6 +40,41 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(16.0),
               child: BlocBuilder<HomePageBloc, HomePageState>(
                   builder: (context, state) {
+                if (state.percent < 1) {
+                  final w = MediaQuery.of(context).size.width / 2;
+                  return Center(
+                    child: Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        Container(
+                          width: w,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black12,
+                          ),
+                        ),
+                        Container(
+                          width: state.percent * w,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.blue,
+                          ),
+                        ),
+                        Positioned.fill(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              '${(state.percent * 100).toInt()}%',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
                 return ListView.builder(
                   itemCount: state.users.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -58,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         onTap: () {
                           context.go(
-                            '${AppRoutePaths.homePage.path}/${AppRoutePaths.userDetails.path}', extra: user,
-                            // queryParameters: {"index": index}, //TODO: add to json to UserViewModel
+                            AppRoutePaths.userDetails.fullPath,
+                            extra: user,
                           );
                         },
                       ),

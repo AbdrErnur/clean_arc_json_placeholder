@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:zagruzka_ekrana/features/auth/domain/usecase/sign_out_usecase.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/usecase/sign_up_usecase.dart';
 import 'package:zagruzka_ekrana/features/auth/presentation/auth_view_model/email_text_form_view_model.dart';
 import 'package:zagruzka_ekrana/features/auth/presentation/auth_view_model/password_repeat_text_form_view_model.dart';
@@ -16,11 +15,13 @@ part 'register_page_state.dart';
 typedef StateEmitter = Emitter<RegisterPageState>;
 
 class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
-  RegisterPageBloc({required SignUpUsecase creatSignUpUsecase})
-      : _signUpUsecase = creatSignUpUsecase,
+  RegisterPageBloc({required SignUpUsecase creatSignUpUsecase}): _signUpUsecase = creatSignUpUsecase,
         super(const RegisterPageState()) {
     on<RegisterPageEvent>(_handleEvents, transformer: _debounceEvent);
   }
+
+  final SignUpUsecase _signUpUsecase;
+
 
   Future<void> _handleEvents(
       RegisterPageEvent event, Emitter<RegisterPageState> emit) async {
@@ -31,9 +32,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
           _onEditConfirmationPassword(password, emit),
       togglePasswordObscure: () {
         final viewModel = state.passwordTextFormViewModel;
-        final newState = state.copyWith(
-            passwordTextFormViewModel:
-                viewModel.copyWith(isObscured: !viewModel.isObscured));
+        final newState = state.copyWith(passwordTextFormViewModel: viewModel.copyWith(isObscured: !viewModel.isObscured));
         emit(newState);
       },
       toggleConfirmationPasswordObscure: () {
@@ -51,7 +50,6 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
     );
   }
 
-  final SignUpUsecase _signUpUsecase;
 
   Future<void> _submit(Emitter<RegisterPageState> emit) async {
     emit(state.copyWith(status: RegistrationStatus.loading));
@@ -61,13 +59,11 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
     final strongPassword = isPasswordStrongEnough(emit);
 
     print('**************************************');
-    print(
-        'identificalPassword:$identificalPassword\nvalidEmail:$validEmail\nstrongPassword:$strongPassword');
+    print('identificalPassword:$identificalPassword\nvalidEmail:$validEmail\nstrongPassword:$strongPassword');
     print('**************************************');
 
     //проверка емейла и валидация пароля
-    final bool isAllDataIsvalid =
-        strongPassword && validEmail && identificalPassword;
+    final bool isAllDataIsvalid = strongPassword && validEmail && identificalPassword;
 
     if (!isAllDataIsvalid) {
       emit(state.copyWith(
@@ -91,17 +87,19 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
         status: RegistrationStatus.succeed, message: 'Congratulations'));
   }
 
+
   Future<void> _onEditEmail(String email, StateEmitter emit) async {
-    final newEmailTextViewModel =
-        state.emailTextFormViewModel.copyWith(value: email);
+    final newEmailTextViewModel = state.emailTextFormViewModel.copyWith(value: email);
 
     emit(state.copyWith(emailTextFormViewModel: newEmailTextViewModel));
   }
+
 
   Future<void> _onPasswordEdit(String password, StateEmitter emit) async {
     final passVm = state.passwordTextFormViewModel.copyWith(value: password);
     emit(state.copyWith(passwordTextFormViewModel: passVm));
   }
+
 
   Future<void> _onEditConfirmationPassword(
       String password, StateEmitter emit) async {
@@ -129,8 +127,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
   }
 
   bool checkPasswordsIndentify(Emitter<RegisterPageState> emit) {
-    final isValid = state.passwordTextFormViewModel.value ==
-        state.passwordRepeatTextFormViewModel.value;
+    final isValid = state.passwordTextFormViewModel.value == state.passwordRepeatTextFormViewModel.value;
     if (!isValid) {
       final passVm = state.passwordTextFormViewModel.copyWith(
         isValid: isValid,
@@ -170,9 +167,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
         event is EditConfirmationPasswordEvent ||
         event is SendDataEvent;
     if (isDebounceRequiredEvent) {
-      return stream
-          .debounceTime(const Duration(milliseconds: 500))
-          .asyncExpand(streamFn);
+      return stream.debounceTime(const Duration(milliseconds: 500)).asyncExpand(streamFn);
     }
 
     return stream.asyncExpand(streamFn);

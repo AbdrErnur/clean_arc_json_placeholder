@@ -27,7 +27,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
         children: [
           _UserDetailsHeader(userEntityViewModel: user),
           const Divider(),
-          const UserDetailsPageTab(),
+          const UserDetailsPageTab(), //ТАБ
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

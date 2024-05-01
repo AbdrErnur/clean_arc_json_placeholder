@@ -7,4 +7,6 @@ abstract class AccountRepository {
   Future<void> signOut();
   User? getCurrentUser();
   Future<String?> getToken();
+  Future<AccountEntity?> sendPasswordRequest();
+  Future<AccountEntity?> confirmPasswordReset();
 }

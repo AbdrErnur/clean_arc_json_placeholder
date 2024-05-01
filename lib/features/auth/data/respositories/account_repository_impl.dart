@@ -53,4 +53,16 @@ class AccountRepositoryImpl implements AccountRepository {
     return token;
   }
 
+  @override
+  Future<AccountEntity?> sendPasswordRequest() {
+    // TODO: implement sendPasswordRequest
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AccountEntity?> confirmPasswordReset() {
+    // TODO: implement confirmPasswordReset
+    throw UnimplementedError();
+  }
+
 }
