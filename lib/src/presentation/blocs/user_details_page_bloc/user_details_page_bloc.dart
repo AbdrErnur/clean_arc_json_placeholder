@@ -9,7 +9,7 @@ import 'package:zagruzka_ekrana/src/domain/usecases/get_comment_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_photo_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_post_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_todo_usecase.dart';
-import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/costants/page_tab_enum.dart';
+import 'package:zagruzka_ekrana/src/presentation/blocs/user_details_page_bloc/costants/page_tab_enum.dart';
 import 'package:zagruzka_ekrana/src/presentation/view_models/album_view_model.dart';
 import 'package:zagruzka_ekrana/src/presentation/view_models/comment_entity_view_model.dart';
 import 'package:zagruzka_ekrana/src/presentation/view_models/photo_view_model.dart';

@@ -8,9 +8,9 @@ class SignInUsecase {
 
   SignInUsecase(this.accountRepository);
 
-  Future<Either<AppError, AccountEntity?>> call({required String email,required String password}) async{
+  Future<Either<AppError, AccountEntity>> call({required String email,required String password}) async{
     try{
-      final accountEntity = await accountRepository.signIn(email, password);
+      final AccountEntity accountEntity = await accountRepository.signIn(email, password);
       return Right(accountEntity);
 
     } on AppError catch (e){

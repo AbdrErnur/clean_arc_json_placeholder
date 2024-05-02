@@ -7,7 +7,7 @@ class EmailTextFormViewModel with _$EmailTextFormViewModel{
   const factory EmailTextFormViewModel({
     @Default('') String value,
     @Default('') String errorMessage,
-    @Default(true) bool isValid,
+    @Default(false) bool isValid,
 })=_EmailTextFormViewModel;
 }
 

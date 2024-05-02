@@ -4,6 +4,7 @@ import 'package:zagruzka_ekrana/features/auth/data/respositories/account_reposit
 import 'package:zagruzka_ekrana/features/auth/domain/repositories/account_repository.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/usecase/get_current_user_usecase.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/usecase/get_token_usecase.dart';
+import 'package:zagruzka_ekrana/features/auth/domain/usecase/send_password_request_email_usecase.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/usecase/sign_in_usecase.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/usecase/sign_out_usecase.dart';
 import 'package:zagruzka_ekrana/features/auth/domain/usecase/sign_up_usecase.dart';
@@ -25,9 +26,9 @@ import 'package:zagruzka_ekrana/src/domain/usecases/get_photo_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_post_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_todo_usecase.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_user_usecase.dart';
-import 'package:zagruzka_ekrana/src/presentation/home_page_bloc/home_page_bloc.dart';
 
 import 'src/domain/repositories/user_repository.dart';
+import 'src/presentation/blocs/home_page_bloc/home_page_bloc.dart';
 
 final getIt = GetIt.instance;
 
@@ -68,7 +69,9 @@ void setUpDi(){
 
   getIt.registerFactory<GetTokenUsecase>(() => GetTokenUsecase(getIt.get<AccountRepository>()));
 
+  getIt.registerFactory<SendPasswordRequestEmailUseCase>(() => SendPasswordRequestEmailUseCase(getIt.get<AccountRepository>()));
 
-  ///bloc
+
+  ///home page bloc
   getIt.registerSingleton<HomePageBloc>(HomePageBloc(getUsersUsecase: getIt.get<GetUsersUsecase>()));
 }

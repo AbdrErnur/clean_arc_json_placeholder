@@ -2,16 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:zagruzka_ekrana/di.dart';
 import 'package:zagruzka_ekrana/service/routing/route_constants.dart';
-import 'package:zagruzka_ekrana/src/domain/usecases/get_album_usecase.dart';
-import 'package:zagruzka_ekrana/src/domain/usecases/get_comment_usecase.dart';
-import 'package:zagruzka_ekrana/src/domain/usecases/get_photo_usecase.dart';
-import 'package:zagruzka_ekrana/src/domain/usecases/get_post_usecase.dart';
-import 'package:zagruzka_ekrana/src/domain/usecases/get_todo_usecase.dart';
-import 'package:zagruzka_ekrana/src/presentation/home_page_bloc/home_page_bloc.dart';
-import 'package:zagruzka_ekrana/src/presentation/pages/user_details_page.dart';
-import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/user_details_page_bloc.dart';
+import 'package:zagruzka_ekrana/src/presentation/blocs/home_page_bloc/home_page_bloc.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage(
@@ -21,11 +13,22 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final bloc = context.read<HomePageBloc>();
+      bloc.add(InitializeHomePageEvent());
+    });
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

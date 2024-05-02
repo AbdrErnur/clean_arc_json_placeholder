@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rxdart/transformers.dart';
@@ -20,8 +21,7 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
 
   final SignInUsecase _signInUsecase;
 
-  Future<void> _handleEvents(
-      SignInPageEvent event, Emitter<SignInPageState> emit) async {
+  Future<void> _handleEvents(SignInPageEvent event, Emitter<SignInPageState> emit) async {
     await event.when(
       editEmail: (email) => _onEditEmail(email, emit),
       editPassword: (password) => _onPasswordEdit(password, emit),
@@ -48,13 +48,15 @@ class SignInPageBloc extends Bloc<SignInPageEvent, SignInPageState> {
     if (!state.emailTextFormViewModel.isValid) {
       return state.copyWith(
         status: SignInStatus.failure,
-        message: 'happened on front side',
+        message: 'Wrong email format',
       );
     }
     final result = await _signInUsecase.call(
         email: state.emailTextFormViewModel.value,
         password: state.passwordTextFormViewModel.value);
 
+    print(state.emailTextFormViewModel.value);
+    print(state.passwordTextFormViewModel.value);
 
     return result.fold(
       (left) => state.copyWith(

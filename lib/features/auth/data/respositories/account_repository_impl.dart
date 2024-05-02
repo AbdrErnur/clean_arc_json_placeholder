@@ -10,31 +10,15 @@ class AccountRepositoryImpl implements AccountRepository {
   AccountRepositoryImpl(this._dataSource);
 
   @override
-  Future<AccountEntity?> signUp(String email, String password) async {
-    try {
-      User? user = await _dataSource.signUp(email, password);
-      if (user != null) {
-        return await user.toEntity();  // Использование extension для маппинга
-      }
-      return null;
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
+  Future<AccountEntity> signUp(String email, String password) async {
+    final user = await _dataSource.signUp(email, password);
+    return user.toEntity(); // Использование extension для маппинга
   }
 
   @override
-  Future<AccountEntity?> signIn(String email, String password) async {
-    try{
-      User? user = await _dataSource.signIn(email, password);
-      if(user != null){
-        return await user.toEntity();
-      }
-      return null;
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
+  Future<AccountEntity> signIn(String email, String password) async {
+    final user = await _dataSource.signIn(email, password);
+    return user.toEntity();
   }
 
   @override
@@ -48,21 +32,18 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<String?> getToken() async{
+  Future<String?> getToken() async {
     String? token = await _dataSource.getToken();
     return token;
   }
 
   @override
-  Future<AccountEntity?> sendPasswordRequest() {
-    // TODO: implement sendPasswordRequest
-    throw UnimplementedError();
+  Future<void> sendPasswordRequestEmail(String email) async {
+    await _dataSource.sendPasswordRequestEmail(email);
   }
 
   @override
-  Future<AccountEntity?> confirmPasswordReset() {
-    // TODO: implement confirmPasswordReset
-    throw UnimplementedError();
+  Future<void> confirmPasswordReset(String code, String password) async {
+    await _dataSource.confirmPasswordReset(code, password);
   }
-
 }

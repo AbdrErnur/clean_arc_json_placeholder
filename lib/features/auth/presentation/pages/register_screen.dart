@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:zagruzka_ekrana/features/auth/presentation/register_page_bloc/register_page_bloc.dart';
+import 'package:zagruzka_ekrana/features/auth/presentation/blocs/register_page_bloc/register_page_bloc.dart';
 import 'package:zagruzka_ekrana/service/routing/route_constants.dart';
 
 class RegisterScreen extends StatefulWidget {

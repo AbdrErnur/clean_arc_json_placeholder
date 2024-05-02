@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:zagruzka_ekrana/features/auth/presentation/auth_page_bloc/sign_in_page_bloc.dart';
+import 'package:zagruzka_ekrana/features/auth/presentation/blocs/sign_in_page_bloc/sign_in_page_bloc.dart';
 import 'package:zagruzka_ekrana/service/routing/route_constants.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -72,8 +72,6 @@ class _SignInScreenState extends State<SignInScreen> {
           case SignInStatus.succeed:
             context.loaderOverlay.hide();
             context.go(AppRoutePaths.homePage.fullPath);
-
-            // context.go(AppRoutePaths.homePage.fullPath);
           case SignInStatus.none:
         }
       },
@@ -81,7 +79,7 @@ class _SignInScreenState extends State<SignInScreen> {
         body: Padding(
           padding: const EdgeInsets.all(40.0),
           child: BlocBuilder<SignInPageBloc, SignInPageState>(
-            builder: (context, state){
+            builder: (context, state) {
               final emailViewModel = state.emailTextFormViewModel;
               final passwordViewModel = state.passwordTextFormViewModel;
               final bloc = context.read<SignInPageBloc>();
@@ -91,7 +89,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   TextFormField(
                     controller: emailTextInputController,
                     decoration: InputDecoration(
-                      errorText: emailViewModel.errorMessage.isEmpty?null:emailViewModel.errorMessage,
+                      errorText: emailViewModel.errorMessage.isEmpty
+                          ? null
+                          : emailViewModel.errorMessage,
                       icon: const Icon(Icons.email),
                       labelText: 'Введите email',
                     ),
@@ -103,21 +103,27 @@ class _SignInScreenState extends State<SignInScreen> {
                       labelText: 'Введите пароль',
                       suffixIcon: IconButton(
                         onPressed: () {
-                          bloc.add(const SignInPageEvent.togglePasswordObscure());
+                          bloc.add(
+                              const SignInPageEvent.togglePasswordObscure());
                         },
                         icon: const Icon(Icons.remove_red_eye_outlined),
                       ),
                     ),
                   ),
                   const SizedBox(height: 10),
+                  TextButton(
+                      onPressed: () => context
+                          .go(AppRoutePaths.resetPasswordScreen.fullPath),
+                      child: const Text('Reset password')),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                       onPressed: () {
-                        bloc.add( const SignInPageEvent.sendData());
+                        bloc.add(const SignInPageEvent.sendData());
                       },
                       child: const Text('Войти')),
                   ElevatedButton(
-                    onPressed: () => context.go(
-                        AppRoutePaths.register.fullPath),
+                    onPressed: () =>
+                        context.go(AppRoutePaths.register.fullPath),
                     child: const Text('Зарегестрироваться'),
                   ),
                 ],

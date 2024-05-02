@@ -4,7 +4,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:zagruzka_ekrana/di.dart';
 import 'package:zagruzka_ekrana/service/routing/route_config.dart';
 import 'package:zagruzka_ekrana/src/domain/usecases/get_user_usecase.dart';
-import 'package:zagruzka_ekrana/src/presentation/home_page_bloc/home_page_bloc.dart';
+import 'package:zagruzka_ekrana/src/presentation/blocs/home_page_bloc/home_page_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({

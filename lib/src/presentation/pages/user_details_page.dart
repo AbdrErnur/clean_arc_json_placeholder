@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zagruzka_ekrana/src/presentation/blocs/user_details_page_bloc/costants/page_tab_enum.dart';
+import 'package:zagruzka_ekrana/src/presentation/blocs/user_details_page_bloc/user_details_page_bloc.dart';
 import 'package:zagruzka_ekrana/src/presentation/pages/components/user_details_page_tab.dart';
-import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/costants/page_tab_enum.dart';
-import 'package:zagruzka_ekrana/src/presentation/user_details_page_bloc/user_details_page_bloc.dart';
 import 'package:zagruzka_ekrana/src/presentation/view_models/user_entity_view_model.dart';
 
 class UserDetailsPage extends StatefulWidget {
